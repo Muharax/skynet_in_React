@@ -74,18 +74,7 @@ app.post('/logowanie', (req, res) => {
     res.json({ message: `${SYSTEM} Uzupełnij Dane` });
     return;
   }
-// async function hashPassword(password) {
-//     try {
-//         const salt = await bcrypt.genSalt(saltRounds);
-//         const hashedPassword = await bcrypt.hash(password, salt);
-//         return hashedPassword;
-//     } catch (error) {
-//         console.log(error);
-//         throw error;
-//     }
-// }
 
-// Wybierz użytkownika na podstawie nazwy użytkownika
 const query = 'SELECT * FROM users WHERE user = ?';
 db.query(query, [username], async (error, results) => {
   if (error) {
@@ -109,11 +98,6 @@ db.query(query, [username], async (error, results) => {
   }
 });
 });
-
-
-
-
-
 
 
 

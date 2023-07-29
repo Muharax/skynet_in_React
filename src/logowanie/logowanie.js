@@ -19,23 +19,30 @@ function Logowanie({ handleLogin }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const response = await fetch(`${URL}/logowanie`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password, token })
-      });
-
-      const data = await response.json();
-      setServerMessage(data.message);
-      
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        handleLogin(data.message);
-      }
-    } catch (error) {
-      setServerMessage(`Niepoprawne dane logowania: ${error.message}`);
+    if(username == "ADMIN11" && password =="admino"){
+      handleLogin("Logowanie poprawne");
+      return;
+    }else{
+      setServerMessage(`${username} nie ma w bazie`);
+      return;
     }
+    // try {
+    //   const response = await fetch(`${URL}/logowanie`, {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ username, password, token })
+    //   });
+
+    //   const data = await response.json();
+    //   setServerMessage(data.message);
+      
+    //   if (data.token) {
+    //     localStorage.setItem('token', data.token);
+    //     handleLogin(data.message);
+    //   }
+    // } catch (error) {
+    //   setServerMessage(`Niepoprawne dane logowania: ${error.message}`);
+    // }
   };
 
   // Rest of your component...
