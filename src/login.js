@@ -22,24 +22,24 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('YE');
 
-
-    fetch('http://localhost:3001/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(form),
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-        setMessageStatus(data.message);
-        // alert(`${data.message}`);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+    // fetch('http://localhost:3001/login', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(form),
+    //   })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     console.log('Success:', data);
+    //     setMessageStatus(data.message);
+    //     // alert(`${data.message}`);
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error:', error);
+    //   });
 
 
 
