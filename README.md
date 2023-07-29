@@ -1,3 +1,7 @@
+# 01 Episode - Birthday [incoming]
+
+https://muharax.github.io/skynet_in_React/#/Home
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
