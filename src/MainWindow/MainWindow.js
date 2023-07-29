@@ -4,16 +4,17 @@ import Home from "../Home/Home";
 import Uzytkownicy from "../Uzytkownicy/Uzytkownicy";
 import logo from './img/logo.png';
 import Search from "./Search/Search";
-import Logout_X from "../logout/logout";
+import LogoutX from "../logout/logout";
 
-function MainWindow({ handleLogout }){
+function MainWindow({ handleLogout, serverMessage }){
 
 
 
     return(
         <Router>  {/* Router na najwyższym poziomie */}
-            <Logout_X onLogout={handleLogout} />
+            <LogoutX onLogout={handleLogout} />
             <div className="MainWindow">  
+           <div className="alert">{serverMessage && <div>{serverMessage}</div>}</div>
                 <div className="COL1">
                     <div className="A1 LOGO">
                         <Link to="/Home">  {/* Dodanie linku do logo */}

@@ -1,71 +1,100 @@
-import React, { useState, } from "react";
+import React, { useState, useEffect } from "react";
 import logo from '../MainWindow/img/logo.png';
 
+const URL = 'http://localhost:3001';
+
 function Logowanie({ handleLogin }) {
-  // Tworzenie stanu dla formularza
   const [username, setUsername] = useState("ADMIN11");
   const [password, setPassword] = useState("admino");
+  const [token, setToken] = useState("");
+  const [serverMessage, setServerMessage] = useState("");
 
-  // Obsługa logowania
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    setToken(generateToken());
+  }, []);
+
+  const generateToken = () => {
+    return '_' + Math.random().toString(36).substr(2, 9);
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Sprawdzanie, czy dane logowania są poprawne
-    if (username === "ADMIN11" && password === "admino") {
-      alert("Zalogowano pomyślnie!");
-      setUsername("");
-      setPassword("");
-      handleLogin();  // Wywołanie `handleLogin` po udanym logowaniu
-    } else {
-      alert("Niepoprawne dane logowania");
+    try {
+      const response = await fetch(`${URL}/logowanie`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, token })
+      });
+
+      const data = await response.json();
+      setServerMessage(data.message);
+      
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        handleLogin(data.message);
+      }
+    } catch (error) {
+      setServerMessage(`Niepoprawne dane logowania: ${error.message}`);
     }
   };
 
+  // Rest of your component...
+
   return (
     <div id="LOGOWANIE">
-      <div class="LG">
-        <div class="logos">
-          <img src={logo} alt="" class="logos-SWG" />
+      <div className="alert">{serverMessage && <div>{serverMessage}</div>}</div>
+      <div className="LG">
+        <div className="logos">
+          <img src={logo} alt="" className="logos-SWG" />
         </div>
 
         <div id="logowanie-s">
           <form onSubmit={handleSubmit}>
-            <input type="hidden" name="token" value="" />
+          <input
+                type="hidden"
+                id="token"
+                autoComplete="off"
+                name="token"
+                placeholder="Token"
+                value={token}
+                className="w100"
+              />
 
             <div id="name">
-              <i class="material-icons prefix cwhite">apps</i>
+              <i className="material-icons prefix cwhite">apps</i>
               <input
                 type="text"
                 id="first"
-                autocomplete="off"
-                autofocus="On"
+                autoComplete="off"
+                autoFocus="On"
                 name="user"
                 placeholder="Login"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                class="w100"
-                required
+                className="w100"
+                // required
               />
             </div>
 
             <div id="pass">
-              <i class="material-icons prefix cwhite">lock</i>
+              <i className="material-icons prefix cwhite">lock</i>
               <input
                 type="password"
                 id="second"
-                autocomplete="off"
+                autoComplete="off"
                 name="pass"
                 placeholder="Hasło"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                class="w100"
-                required
+                className="w100"
+                // required
               />
             </div>
 
             <div id="btn-log-in">
-              <div class="wrapper">
-                <div class="box">
-                  <button type="submit" class="log-in" id="sub">
+              <div className="wrapper">
+                <div className="box">
+                  <button type="submit" className="log-in" id="sub">
                     Sign In
                   </button>
                 </div>
@@ -79,3 +108,5 @@ function Logowanie({ handleLogin }) {
 }
 
 export default Logowanie;
+
+  

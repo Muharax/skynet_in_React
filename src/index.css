@@ -132,6 +132,7 @@ code {
 #LOGOWANIE{
   width: 20%;
   display: flex;
+  flex-direction: column;
   background-color: var(--search);
   padding: 70px 0px 90px 0px;
   border-radius: 5px;
@@ -141,6 +142,13 @@ code {
   left: 50%;
   top: 50%;
 }
+.LG{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .logos-SWG{
 object-fit: contain;
   width: 130px;
@@ -151,6 +159,7 @@ display: flex;
   justify-content: center;
   background-color: #000000;
   border-radius: 8px;
+  width: 210px;
 }
 #logowanie-s{
   margin-top: 30px;

@@ -1,43 +1,27 @@
 import './App.css';
-import React, { Component } from "react";
+import React, { useState } from "react";
 import MainWindow from './MainWindow/MainWindow';
 import Logowanie from './logowanie/logowanie';
 
-class App extends Component {
+function App() {
+  const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem("loggedIn")) || false);
+  const [serverMessage, setServerMessage] = useState(null);
 
-  constructor() {
-    super();
-    this.state = {
-      loggedIn: JSON.parse(localStorage.getItem("loggedIn")) || false,
-    };
-  }
-
-  // state = {
-  //   loggedIn: false,
-  // };
-
-  handleLogin = () => {
-    // tu powinna być logika logowania, np. zapytanie do API
-    this.setState({ loggedIn: true });
+  const handleLogin = (message) => {
+    setLoggedIn(true);
+    setServerMessage(message);
     localStorage.setItem("loggedIn", true);
   };
 
-  handleLogout = () => {
-    // tu powinna być logika wylogowywania, np. usunięcie tokena
-    this.setState({ loggedIn: false });
+  const handleLogout = () => {
+    setLoggedIn(false);
+    setServerMessage(null);
     localStorage.removeItem("loggedIn");
   };
 
-  render() {
-    if (this.state.loggedIn) {
-      return <MainWindow handleLogout={this.handleLogout} />
-    } else {
-      return <Logowanie handleLogin={this.handleLogin} />
-    }
-  }
+  return loggedIn 
+    ? <MainWindow handleLogout={handleLogout} serverMessage={serverMessage} />
+    : <Logowanie handleLogin={handleLogin} />
 }
-
-  
-
 
 export default App;

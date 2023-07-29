@@ -1,10 +1,11 @@
 import React from "react";
 
-function Logout_X({ onLogout }) {
+function LogoutX({ onLogout }) {
   const handleClick = e => {
     e.preventDefault();
     const confirmLogout = window.confirm('Czy na pewno chcesz się wylogować?');
     if (confirmLogout) {
+      localStorage.removeItem('token');
       console.log('Użytkownik wylogowany.');
       onLogout();  // Wywołanie przekazanej funkcji onLogout
     }
@@ -19,4 +20,4 @@ function Logout_X({ onLogout }) {
   );
 }
 
-export default Logout_X;
+export default LogoutX;
