@@ -1,8 +1,9 @@
 import './App.css';
 import React, { Component } from "react";
-import Login from "./login.js";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import Menu from './menu';
+import MainWindow from './MainWindow/MainWindow';
+// import Login from "./login.js";
+// import { Routes, Route, Router} from 'react-router-dom';
+// import Menu from './menu';
 
 class App extends Component {
   state = {
@@ -22,10 +23,14 @@ class App extends Component {
   render() {
     return (
       <>
-      <Menu />
-        <Routes>
-          <Route path="/" element={<Login />} />
+      <MainWindow />
+      
+        {/* <Routes>
+          <Router>
+            <Route path="/" element={<Login />} />
+            </Router>
         </Routes>
+       */}
       </>
     );
   }
