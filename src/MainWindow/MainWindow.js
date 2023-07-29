@@ -4,25 +4,15 @@ import Home from "../Home/Home";
 import Uzytkownicy from "../Uzytkownicy/Uzytkownicy";
 import logo from './img/logo.png';
 import Search from "./Search/Search";
+import Logout_X from "../logout/logout";
 
-function MainWindow(){
+function MainWindow({ handleLogout }){
 
-    const handleClick = e => {
-        e.preventDefault();
-        const confirmLogout = window.confirm('Czy na pewno chcesz się wylogować?');
-        if (confirmLogout) {
-          console.log('Użytkownik wylogowany.');
-          // Kod do wylogowania użytkownika
-        }
-    }
 
 
     return(
         <Router>  {/* Router na najwyższym poziomie */}
-            <div className="EXIT">
-                <button className="btn-1" id="logout" onClick={handleClick}>X</button>
-            </div>
-
+            <Logout_X onLogout={handleLogout} />
             <div className="MainWindow">  
                 <div className="COL1">
                     <div className="A1 LOGO">

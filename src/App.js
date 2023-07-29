@@ -1,7 +1,7 @@
 import './App.css';
 import React, { Component } from "react";
 import MainWindow from './MainWindow/MainWindow';
-// import Login from "./login.js";
+import Logowanie from './logowanie/logowanie';
 // import { Routes, Route, Router} from 'react-router-dom';
 // import Menu from './menu';
 
@@ -21,19 +21,15 @@ class App extends Component {
   };
 
   render() {
-    return (
-      <>
-      <MainWindow />
-      
-        {/* <Routes>
-          <Router>
-            <Route path="/" element={<Login />} />
-            </Router>
-        </Routes>
-       */}
-      </>
-    );
+    if (this.state.loggedIn) {
+      return <MainWindow handleLogout={this.handleLogout} />
+    } else {
+      return <Logowanie handleLogin={this.handleLogin} />
+    }
   }
 }
+
+  
+
 
 export default App;

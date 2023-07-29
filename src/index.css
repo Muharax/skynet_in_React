@@ -119,3 +119,54 @@ code {
 .btn-1:hover {
   box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
 }
+
+
+
+#LOGOWANIE{
+  width: 20%;
+  display: flex;
+  background-color: var(--search);
+  padding: 70px 0px 90px 0px;
+  border-radius: 5px;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+.logos-SWG{
+object-fit: contain;
+  width: 130px;
+  margin: 20px;
+}
+.logos{
+display: flex;
+  justify-content: center;
+  background-color: #000000;
+  border-radius: 8px;
+}
+#logowanie-s{
+  margin-top: 30px;
+}
+
+
+
+
+
+
+
+
+.divWithScroll::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+/* Styluje kciuk przewijania */
+.divWithScroll::-webkit-scrollbar-thumb {
+  background-color: #F90; 
+}
+
+/* Styluje przycisk przewijania */
+.divWithScroll::-webkit-scrollbar-button {
+  background-color: #F90;
+}

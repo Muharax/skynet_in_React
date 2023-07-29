@@ -59,7 +59,7 @@ function Uzytkownicy(){
         <button onClick={handleClick}>Administracja</button>
  
         {displayData && (
-          <div className="vh80">
+          <div className="vh80 divWithScroll">
             <table>
               <thead>
               <tr>
