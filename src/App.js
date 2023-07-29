@@ -4,18 +4,28 @@ import MainWindow from './MainWindow/MainWindow';
 import Logowanie from './logowanie/logowanie';
 
 class App extends Component {
-  state = {
-    loggedIn: false,
-  };
+
+  constructor() {
+    super();
+    this.state = {
+      loggedIn: JSON.parse(localStorage.getItem("loggedIn")) || false,
+    };
+  }
+
+  // state = {
+  //   loggedIn: false,
+  // };
 
   handleLogin = () => {
     // tu powinna być logika logowania, np. zapytanie do API
     this.setState({ loggedIn: true });
+    localStorage.setItem("loggedIn", true);
   };
 
   handleLogout = () => {
     // tu powinna być logika wylogowywania, np. usunięcie tokena
     this.setState({ loggedIn: false });
+    localStorage.removeItem("loggedIn");
   };
 
   render() {
