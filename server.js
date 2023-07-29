@@ -3,9 +3,10 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-const SYSTEM = 'SYSTEM :';
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
 
 const generateToken = () => {
   return '_' + Math.random().toString(36).substr(2, 9);
@@ -15,6 +16,8 @@ const generateToken = () => {
 
 const app = express();
 const port = 3001;
+const saltRounds = 10;
+const SYSTEM = 'SYSTEM :';
 
 // const url = 'mongodb://localhost:27017';
 // const dbName = 'users';
@@ -71,21 +74,27 @@ app.post('/logowanie', (req, res) => {
     res.json({ message: `${SYSTEM} Uzupełnij Dane` });
     return;
   }
+// async function hashPassword(password) {
+//     try {
+//         const salt = await bcrypt.genSalt(saltRounds);
+//         const hashedPassword = await bcrypt.hash(password, salt);
+//         return hashedPassword;
+//     } catch (error) {
+//         console.log(error);
+//         throw error;
+//     }
+// }
 
-  // Przykład funkcji haszującej. W praktyce użyj biblioteki jak bcrypt.
-  function hashPassword(password) {
-    return password; // tymczasowe, powinno być tutaj prawdziwe hashowanie
-  }
-
-  const hashedPassword = hashPassword(password);
-
-  const query = 'SELECT * FROM users WHERE user = ? AND pass = ?';
-  db.query(query, [username, hashedPassword], (error, results) => {
-    if (error) {
-      res.status(500).json({ message: `${SYSTEM} Błąd podczas logowania.` });
-      return;
-    } else if (results.length == 1 ) {
-      const user = results[0]; // Wybierz pierwszego znalezionego użytkownika
+// Wybierz użytkownika na podstawie nazwy użytkownika
+const query = 'SELECT * FROM users WHERE user = ?';
+db.query(query, [username], async (error, results) => {
+  if (error) {
+    res.status(500).json({ message: `${SYSTEM} Błąd podczas logowania.` });
+    return;
+  } else if (results.length == 1 ) {
+    const user = results[0]; // Wybierz pierwszego znalezionego użytkownika
+    const match = await bcrypt.compare(password, user.pass);
+    if (match) {
       const token = jwt.sign({ id: user.id }, 'tajny_klucz'); // Generowanie tokena JWT
       res.json({ message: `${SYSTEM} Pomyślnie zalogowano.`, token });
       return;
@@ -93,14 +102,13 @@ app.post('/logowanie', (req, res) => {
       res.json({ message: `${SYSTEM} Niepoprawne dane logowania.` });
       return;
     }
-  });
+
+  } else {
+    res.json({ message: `${SYSTEM} Niepoprawne dane logowania.` });
+    return;
+  }
 });
-
-
-
-
-
-
+});
 
 
 
@@ -112,3 +120,17 @@ app.post('/logowanie', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
