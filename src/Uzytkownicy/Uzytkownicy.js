@@ -66,6 +66,7 @@ function Uzytkownicy(){
                  <th>Name</th>
                  <th>Age</th>
                  <th>Job</th>
+                 <th>OPT</th>
               </tr>
               </thead>
               <tbody>
@@ -74,6 +75,15 @@ function Uzytkownicy(){
                     <td>{person.name}</td>
                     <td>{person.age}</td>
                     <td>{person.job}</td>
+                    <td>
+                      <button>Edytuj</button>
+                      <button>Usuń</button>
+                      <button>Zablokuj</button>
+                      <select>
+                        <option>Dodaj karte</option>
+                        <option>RFID</option>
+                      </select>
+                    </td>
                  </tr>
               ))}
               </tbody>

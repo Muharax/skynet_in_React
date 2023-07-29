@@ -2,8 +2,6 @@ import './App.css';
 import React, { Component } from "react";
 import MainWindow from './MainWindow/MainWindow';
 import Logowanie from './logowanie/logowanie';
-// import { Routes, Route, Router} from 'react-router-dom';
-// import Menu from './menu';
 
 class App extends Component {
   state = {
