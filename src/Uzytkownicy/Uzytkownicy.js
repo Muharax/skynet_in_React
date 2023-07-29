@@ -41,7 +41,7 @@ function Uzytkownicy(){
 
     const handleClick = e => {
        e.preventDefault();
-       const buttonName = e.target.innerText;
+      //  const buttonName = e.target.innerText;
       //  const confirmLogout = window.confirm(buttonName);
       //  if (confirmLogout) {
       //    console.log('Użytkownik wylogowany.');
