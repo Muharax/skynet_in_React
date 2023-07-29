@@ -3,10 +3,26 @@ import { HashRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import Home from "../Home/Home";
 import Uzytkownicy from "../Uzytkownicy/Uzytkownicy";
 import logo from './img/logo.png';
+import Search from "./Search/Search";
 
 function MainWindow(){
+
+    const handleClick = e => {
+        e.preventDefault();
+        const confirmLogout = window.confirm('Czy na pewno chcesz się wylogować?');
+        if (confirmLogout) {
+          console.log('Użytkownik wylogowany.');
+          // Kod do wylogowania użytkownika
+        }
+    }
+
+
     return(
         <Router>  {/* Router na najwyższym poziomie */}
+            <div className="EXIT">
+                <button className="btn-1" id="logout" onClick={handleClick}>X</button>
+            </div>
+
             <div className="MainWindow">  
                 <div className="COL1">
                     <div className="A1 LOGO">
@@ -15,7 +31,7 @@ function MainWindow(){
                         </Link>
                     </div>
                     <div className="B1">
-                        <input className="search" type="search" name="search"></input>
+                        <Search></Search>
                     </div>
                 </div>
 

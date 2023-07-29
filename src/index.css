@@ -37,7 +37,6 @@ code {
 }
 .A1{
   width: 200px;
-  height: 80px;
 }
 .A2{
   width: 10%;
@@ -49,6 +48,7 @@ code {
   width: 80%;
   background-color: var(--window-load-color);
   border-radius: 7px;
+  padding: 7px;
 }
 .MENU{
   display: flex;
@@ -58,7 +58,11 @@ code {
   width: 100px;
   height: 50px;
 }
-.search {
+.SearchMain{
+  display: flex;
+  flex-direction: row;
+}
+.search-input {
   padding: 3px 18px 3px 38px;
   border: 1px solid #ccc;
   border-radius: 25px;
@@ -66,4 +70,52 @@ code {
   background-color: var(--search);
   min-width: 150%;
   height: 40px;
+}
+.search-SVG {
+  padding: 8px;
+  border-radius: 25px;
+  position: relative;
+  left: 45px;
+  cursor: pointer;
+}
+.vh80{
+  height: 70vh;
+  overflow-y: scroll;
+  padding: 7px;
+}
+
+.EXIT {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 8px;
+}
+
+
+.btn-1 {
+  background-color: initial;
+  background-image: linear-gradient(-180deg, #FF7E31, #E62C03);
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  outline: 0;
+  overflow: hidden;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 100%;
+  z-index: 9;
+  border: 0;
+  transition: box-shadow .2s;
+}
+.btn-1:hover {
+  box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
 }
