@@ -1,7 +1,7 @@
 import './App.css';
 import React, { Component } from "react";
 import Login from "./login.js";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Menu from './menu';
 
 class App extends Component {
@@ -23,11 +23,9 @@ class App extends Component {
     return (
       <>
       <Menu />
-      <Router>
         <Routes>
           <Route path="/" element={<Login />} />
         </Routes>
-      </Router>
       </>
     );
   }

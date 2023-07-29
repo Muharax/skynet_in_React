@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/skynet_in_React/static/css/main.17884fb4.css",
-    "main.js": "/skynet_in_React/static/js/main.0aabee09.js",
+    "main.js": "/skynet_in_React/static/js/main.1790d1ad.js",
     "index.html": "/skynet_in_React/index.html",
     "main.17884fb4.css.map": "/skynet_in_React/static/css/main.17884fb4.css.map",
-    "main.0aabee09.js.map": "/skynet_in_React/static/js/main.0aabee09.js.map"
+    "main.1790d1ad.js.map": "/skynet_in_React/static/js/main.1790d1ad.js.map"
   },
   "entrypoints": [
     "static/css/main.17884fb4.css",
-    "static/js/main.0aabee09.js"
+    "static/js/main.1790d1ad.js"
   ]
 }
