@@ -1,6 +1,8 @@
 # 01 Episode - Birthday [incoming]
 
-https://muharax.github.io/skynet_in_React/#/Home
+https://muharax.github.io/skynet_in_React
+
++login+server
 
 # Getting Started with Create React App
 
