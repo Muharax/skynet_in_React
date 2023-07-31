@@ -8,19 +8,20 @@ function App() {
   const [serverMessage, setServerMessage] = useState(null);
 
   const handleLogin = (message) => {
+    console.log("handleLogin called");
+    localStorage.setItem("loggedIn", true);
     setLoggedIn(true);
     setServerMessage(message);
-    localStorage.setItem("loggedIn", true);
   };
 
   const handleLogout = () => {
     setLoggedIn(false);
     setServerMessage(null);
-    localStorage.removeItem("loggedIn");
+    localStorage.clear();
   };
 
   return loggedIn 
-    ? <MainWindow handleLogout={handleLogout} serverMessage={serverMessage} />
+    ? <MainWindow handleLogout={handleLogout} serverMessage={serverMessage} user={localStorage.getItem('user')} role={localStorage.getItem('role')}/>
     : <Logowanie handleLogin={handleLogin} />
 }
 

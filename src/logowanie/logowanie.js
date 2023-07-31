@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import jwtDecode from 'jwt-decode';
 import logo from '../MainWindow/img/logo.png';
 
 const URL = 'http://localhost:3001';
@@ -8,6 +9,7 @@ function Logowanie({ handleLogin }) {
   const [password, setPassword] = useState("admino");
   const [token, setToken] = useState("");
   const [serverMessage, setServerMessage] = useState("");
+  
 
   useEffect(() => {
     setToken(generateToken());
@@ -19,30 +21,38 @@ function Logowanie({ handleLogin }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if(username == "ADMIN11" && password =="admino"){
-      handleLogin("Logowanie poprawne");
-      return;
-    }else{
-      setServerMessage(`${username} nie ma w bazie`);
-      return;
-    }
-    // try {
-    //   const response = await fetch(`${URL}/logowanie`, {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ username, password, token })
-    //   });
+    console.log('Zanciśnięto przycisk Logowania');
 
-    //   const data = await response.json();
-    //   setServerMessage(data.message);
-      
-    //   if (data.token) {
-    //     localStorage.setItem('token', data.token);
-    //     handleLogin(data.message);
-    //   }
-    // } catch (error) {
-    //   setServerMessage(`Niepoprawne dane logowania: ${error.message}`);
+    // OPERACJA DLA GITHUB PAGES
+    // if(username == "ADMIN11" && password =="admino"){
+    //   handleLogin("Logowanie poprawne");
+    //   return;
+    // }else{
+    //   setServerMessage(`${username} nie ma w bazie`);
+    //   return;
     // }
+
+    try {
+      const response = await fetch(`${URL}/logowanie`, {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, token })
+      });
+
+      const data = await response.json();
+
+      if (data.token) {
+        setServerMessage(data.message);
+        localStorage.setItem('token', data.token);
+        const decodedToken = jwtDecode(data.token);
+        localStorage.setItem('user', decodedToken.user);
+        localStorage.setItem('role', decodedToken.role);
+        handleLogin(data.message);
+        console.log(`Użytkownik: ${decodedToken.user}, Token: ${data.token}, Rola: ${decodedToken.role}`);
+      }
+    } catch (error) {
+      setServerMessage(`Niepoprawne dane logowania: ${error.message}`);
+    }
   };
 
   // Rest of your component...

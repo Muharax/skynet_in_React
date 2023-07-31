@@ -1,20 +1,24 @@
-import React from "react";
-import { HashRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import Home from "../Home/Home";
 import Uzytkownicy from "../Uzytkownicy/Uzytkownicy";
 import logo from './img/logo.png';
 import Search from "./Search/Search";
 import LogoutX from "../logout/logout";
+import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
 
-function MainWindow({ handleLogout, serverMessage }){
+function MainWindow({ handleLogout, serverMessage, role}){
 
-
+    const [alertMessage, setAlertMessage] = useState('null');
 
     return(
         <Router>  {/* Router na najwyższym poziomie */}
             <LogoutX onLogout={handleLogout} />
+            <div className="alert"></div>
             <div className="MainWindow">  
-           <div className="alert">{serverMessage && <div>{serverMessage}</div>}</div>
+                <div className="alert">
+                    {serverMessage && <div>{serverMessage}</div>}
+                </div>
                 <div className="COL1">
                     <div className="A1 LOGO">
                         <Link to="/Home">  {/* Dodanie linku do logo */}
@@ -29,19 +33,24 @@ function MainWindow({ handleLogout, serverMessage }){
                 <div className="COL2">
                     <div className="A2">
                         <div className="MENU">
-                            <Link to="/Uzytkownicy">Użytkownicy</Link>
-                            <Link to="/Rachunki">Rachunki</Link>
-                            <Link to="/Finanse">Finanse</Link>
+                        
+                        <Link to="/Home">Home</Link>
+                        <Link to="/Uzytkownicy">Uzytkownicy BEZ ADMIN</Link>
+                        {role === 'admin' && <Link to="/Uzytkownicy">Uzytkownicy</Link>}
+                         
                         </div>
                     </div>
                     <div className="B2 OKNO">
                             <div id="content">
+                            
                             <Routes>
                                 <Route path="/" element={<Home />} />
-
-                                <Route path="/Home" element={<Home />} />                                
-                                <Route path="/Uzytkownicy" element={<Uzytkownicy />} />
+                                <Route path="/Home" element={<Home />} />
+                                <Route path="/Finanse" element={<Home />} />
                             </Routes>
+                                <PrivateRoute path="/Uzytkownicy" element={<Uzytkownicy />} setAlertMessage={setAlertMessage} />
+                            
+                            
                             </div>
                     </div>
                 </div>

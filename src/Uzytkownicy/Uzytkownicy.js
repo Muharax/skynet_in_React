@@ -1,98 +1,36 @@
 import React, { useState } from 'react';
+import SzukajUzytkownika from './SzukajUzytkownika';
+import DodajUzytkownika from './DodajUzytkownika';
 
-function Uzytkownicy(){
+function Uzytkownicy() {
+  const [activeComponent, setActiveComponent] = useState(''); // state do przechowywania aktywnego komponentu
 
-   const data = [
-      { name: 'John', age: 25, job: 'Engineer' },
-      { name: 'Jane', age: 28, job: 'Designer' },
-      { name: 'Bob', age: 32, job: 'Doctor' },
-      { name: 'John', age: 25, job: 'Engineer' },
-      { name: 'Jane', age: 28, job: 'Designer' },
-      { name: 'Bob', age: 32, job: 'Doctor' },
-      { name: 'John', age: 25, job: 'Engineer' },
-      { name: 'Jane', age: 28, job: 'Designer' },
-      { name: 'Bob', age: 32, job: 'Doctor' },
-      { name: 'John', age: 25, job: 'Engineer' },
-      { name: 'Jane', age: 28, job: 'Designer' },
-      { name: 'Bob', age: 32, job: 'Doctor' },
-      { name: 'John', age: 25, job: 'Engineer' },
-      { name: 'Jane', age: 28, job: 'Designer' },
-      { name: 'Bob', age: 32, job: 'Doctor' },
-      { name: 'John', age: 25, job: 'Engineer' },
-      { name: 'Jane', age: 28, job: 'Designer' },
-      { name: 'Bob', age: 32, job: 'Doctor' },
-      { name: 'John', age: 25, job: 'Engineer' },
-      { name: 'Jane', age: 28, job: 'Designer' },
-      { name: 'Bob', age: 32, job: 'Doctor' },
-      { name: 'John', age: 25, job: 'Engineer' },
-      { name: 'Jane', age: 28, job: 'Designer' },
-      { name: 'Bob', age: 32, job: 'Doctor' },
-      { name: 'John', age: 25, job: 'Engineer' },
-      { name: 'Jane', age: 28, job: 'Designer' },
-      { name: 'Bob', age: 32, job: 'Doctor' },
-      { name: 'John', age: 25, job: 'Engineer' },
-      { name: 'Jane', age: 28, job: 'Designer' },
-      { name: 'Bob', age: 32, job: 'Doctor' },
-      { name: 'John', age: 25, job: 'Engineer' },
-      { name: 'Jane', age: 28, job: 'Designer' },
-      { name: 'Bob', age: 32, job: 'Doctor' }
-    ];
-    const [displayData, setDisplayData] = useState(false);
+  const handleButtonClick = (componentName) => {
+    setActiveComponent(componentName);
+  }
 
-    const handleClick = e => {
-       e.preventDefault();
-      //  const buttonName = e.target.innerText;
-      //  const confirmLogout = window.confirm(buttonName);
-      //  if (confirmLogout) {
-      //    console.log('Użytkownik wylogowany.');
-         setDisplayData(true);
-      //  } else {
-      //    setDisplayData(false);
-      //  }
-    };
- 
-    return(
-      <div>
-        <button onClick={handleClick}>Szukaj</button>
-        <button onClick={handleClick}>Przyjęcie</button>
-        <button onClick={handleClick}>Zwolenienie</button>
-        <button onClick={handleClick}>Administracja</button>
- 
-        {displayData && (
-          <div className="vh80 divWithScroll">
-            <table>
-              <thead>
-              <tr>
-                 <th>Name</th>
-                 <th>Age</th>
-                 <th>Job</th>
-                 <th>OPT</th>
-              </tr>
-              </thead>
-              <tbody>
-              {data.map((person, index) => (
-                 <tr key={index}>
-                    <td>{person.name}</td>
-                    <td>{person.age}</td>
-                    <td>{person.job}</td>
-                    <td>
-                      <button>Edytuj</button>
-                      <button>Usuń</button>
-                      <button>Zablokuj</button>
-                      <select>
-                        <option>Dodaj karte</option>
-                        <option>RFID</option>
-                      </select>
-                    </td>
-                 </tr>
-              ))}
-              </tbody>
-            </table>
-          </div>
-        )}
- 
+  let content;
+  switch(activeComponent) {
+    case 'SzukajUzytkownika':
+      content = <SzukajUzytkownika />
+      break;
+    case 'DodajUzytkownika':
+      content = <DodajUzytkownika />
+      break;
+    default:
+      content = <p></p>
+  }
+
+  return (
+    <div>
+      <button disabled={activeComponent === 'SzukajUzytkownika'} onClick={() => handleButtonClick('SzukajUzytkownika')}>Szukaj użytkownika</button>
+      <button disabled={activeComponent === 'DodajUzytkownika'} onClick={() => handleButtonClick('DodajUzytkownika')}>Dodaj użytkownika</button>
+
+      <div className="output">
+        {content}
       </div>
-    )
- }
- 
- export default Uzytkownicy;
+    </div>
+  );
+};
+
+export default Uzytkownicy;

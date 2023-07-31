@@ -1,13 +1,17 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom'; // import useNavigate
 
 function LogoutX({ onLogout }) {
+  const navigate = useNavigate(); // Utwórz instancję navigate
+
   const handleClick = e => {
     e.preventDefault();
     const confirmLogout = window.confirm('Czy na pewno chcesz się wylogować?');
     if (confirmLogout) {
-      localStorage.removeItem('token');
+      localStorage.clear();
       console.log('Użytkownik wylogowany.');
       onLogout();  // Wywołanie przekazanej funkcji onLogout
+      navigate('/');  // Przekierowanie do strony głównej
     }
   }
 
