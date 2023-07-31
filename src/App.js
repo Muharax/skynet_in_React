@@ -8,7 +8,7 @@ function App() {
   const [serverMessage, setServerMessage] = useState(null);
 
   const handleLogin = (message) => {
-    console.log("handleLogin called");
+    console.log("Zwrócono Logowanie");
     localStorage.setItem("loggedIn", true);
     setLoggedIn(true);
     setServerMessage(message);

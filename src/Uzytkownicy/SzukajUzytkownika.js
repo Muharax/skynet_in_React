@@ -6,6 +6,7 @@ function SzukajUzytkownika() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10); // nowy stan dla limitu
   const [hasMore, setHasMore] = useState(true); // nowy stan dla kontroli dostępności więcej danych
+  const [selectedOption, setSelectedOption] = useState('Imię');
 
   const fetchUsers = useCallback(async (pageNumber) => { // useCallback aby uniknąć ostrzeżenia o braku zależności
     try {
@@ -41,7 +42,8 @@ function SzukajUzytkownika() {
   const prevPage = () => setPage(page > 1 ? page - 1 : page);
 
   const handleSelectChange = (event) => {
-    const selectedValue = parseInt(event.target.value);
+    const selectedValue = event.target.value;
+    setSelectedOption(selectedValue);
     console.log(selectedValue);
     if (selectedValue > 100) {
       const pin = window.prompt('Wprowadź pin');
@@ -108,6 +110,9 @@ const handleDelete = async (userIdToDelete, userName) => {
   }, [page, limit, fetchUsers]); // dodany fetchUsers do zależności useEffect
 
 
+
+  const inputType = selectedOption === 'Data Urodzenia' ? 'date' : 'text';
+
   return (
         <>
           <div className="vh80 divWithScroll">
@@ -122,9 +127,18 @@ const handleDelete = async (userIdToDelete, userName) => {
                 <option value="200">200</option>
                 <option value="500">500</option>
               </select>
+
+              <select id="opcjeSzukaj" onChange={handleSelectChange}>
+                <option>Imię</option>
+                <option>Nazwisko</option>
+                <option>Data Urodzenia</option>
+                <option>Pesel</option>
+              </select>
+              <input type={inputType}/>
+              <button>Wyszukaj</button>
             </div>
 
-            <table>
+            <table className="table">
               <thead>
                 <tr>
                   <th>ID</th>

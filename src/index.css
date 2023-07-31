@@ -168,9 +168,38 @@ display: flex;
 
 
 
+.dodajUzytkownika{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.underForm{
+  display: flex;
+}
+.COL22{
+  display: flex;
+  flex-direction: column;
+}
 
 
 
+
+
+.generujHasloDiv{
+  display: flex;
+  flex-direction: column-reverse;
+}
+.odw{
+  display: flex;
+  flex-direction: column-reverse;
+}
+.myContainer {
+  display: flex;
+  align-items: center;
+}
+.btn-kopiuj{
+  margin-left: 7px;
+}
 
 
 
