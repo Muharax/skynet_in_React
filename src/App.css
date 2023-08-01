@@ -100,43 +100,120 @@
 
 
 
-@keyframes spin {
-  0% { transform: translateY(-30px); }
-  100% { transform: translateY(30px); }
-}
-@keyframes spin2 {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-90px); }
-}
-.number-spin{
-  animation: spin 2s linear infinite;
-}
 
-.number-animation{
-  /* animation: spin2 2s linear infinite; */
-}
 
-.special-div {
-  background: white;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.number {
+  overflow: hidden;
   height: 50px;
 }
 
-.special-up {
-  position: relative;
-  top: 15px;
-  
-}
-.special-down {
-  position: relative;
-  top: -15px;
+.number-inner {
+  height: 50px;
+  transition: transform 1s;
 }
 
-.number-div{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@keyframes spin22 {
+  0% {
+    transform: translateY(0);
+  }
+  50%, 100% {
+    transform: translateY(-100%);
+  }
 }
+
+.spin {
+  animation: spin22 1s linear infinite;
+  transform: translateY(-50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

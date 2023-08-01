@@ -1,0 +1,59 @@
+/* @keyframes spin {
+  0% { transform: translateY(-30px); }
+  100% { transform: translateY(30px); }
+}
+@keyframes spin2 {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-90px); }
+}
+.number-spin{
+  animation: spin 10s linear infinite;
+} */
+
+
+@keyframes move {
+  0% {
+    transform: translateY(-20px);
+    /* transform: translateY(calc(70% + 2px)); 2px to jest margines, który ustawiłeś w komponencie */
+  }
+  100% {
+    transform: translateY(calc(70% + 2px)); /* 2px to jest margines, który ustawiłeś w komponencie */
+  }
+}
+
+.number-spin {
+  animation: move 2s linear infinite;
+  position: relative;
+  top: -146px;
+
+}
+.number-spin-0 {
+  animation: move 0.1s linear infinite;
+}
+.number-spin-1 {
+  animation: move 0.2s linear infinite;
+}
+
+
+
+.special-div {
+  background: white;
+  height: 50px;
+}
+
+.special-up {
+  position: relative;
+  top: 15px;
+  
+}
+.special-down {
+  position: relative;
+  top: -15px;
+}
+
+.number-div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

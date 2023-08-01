@@ -1,52 +1,74 @@
-import React, { useState, useEffect } from 'react';
-import { gsap } from 'gsap';
-import './App.css';
+import React, { useState, useEffect, useRef } from 'react';
+// import './styles.css';
 
-const generateShuffledNumbers = (min, max) => {
-  let numbers = Array.from({length: max - min + 1}, (_, i) => i + min);
-  for(let i = numbers.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * (i + 1));
-    [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+function generateRandomNumbers(n, min, max) {
+  let arr = [];
+  for(let i = 0; i < n; i++) {
+      arr.push(Math.floor(Math.random() * (max - min + 1)) + min);
   }
-  return numbers;
-};
+  return arr;
+}
 
-const Losowanie2 = () => {
-  const [displayedNumbers, setDisplayedNumbers] = useState(generateShuffledNumbers(1, 49));
-  const [currentNumberIndex, setCurrentNumberIndex] = useState(0);
-  const [numbersToDisplay, setNumbersToDisplay] = useState(10); // ile numerów jest jednocześnie widocznych
-  const [animationSpeed, setAnimationSpeed] = useState(1000); // szybkość animacji w milisekundach
-  const [isRunning, setIsRunning] = useState(false); // czy animacja jest uruchomiona
+let randomNumbers = generateRandomNumbers(5, 1, 100); // generates 5 random numbers between 1 and 100
+console.log(randomNumbers);
+
+
+function Losowanie2() {
+  const [numbers, setNumbers] = useState([
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 3, 4, 3, 4, 5, 6, 7, 8, 9],
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  ]);
+  const [spin, setSpin] = useState(false);
+  const intervalId = useRef(null);
+
+  const spinColumn = (columnIndex) => {
+    setNumbers(prevNumbers => {
+      const newNumbers = [...prevNumbers];
+      newNumbers[columnIndex] = [
+        ...newNumbers[columnIndex].slice(1), 
+        Math.floor(Math.random() * 10) 
+      ];
+      return newNumbers;
+    });
+  }
 
   useEffect(() => {
-    let intervalId;
-
-    if(isRunning) {
-      intervalId = setInterval(() => {
-        setCurrentNumberIndex((currentNumberIndex + 1) % displayedNumbers.length);
-      }, animationSpeed);
+    if (spin) {
+      intervalId.current = setInterval(() => {
+        for (let i = 0; i < 3; i++) {
+          spinColumn(i);
+        }
+      }, 1000); 
+    } else {
+      if (intervalId.current) clearInterval(intervalId.current);
     }
 
-    return () => clearInterval(intervalId);
-  }, [currentNumberIndex, isRunning, animationSpeed, displayedNumbers]);
+    return () => {
+      if (intervalId.current) clearInterval(intervalId.current);
+    };
+  }, [spin]);
 
-  const startAnimation = () => {
-    setIsRunning(true);
-  };
-
-  const stopAnimation = () => {
-    setIsRunning(false);
+  const handleSpinClick = () => {
+    setSpin(!spin);
   };
 
   return (
-    <div>
-      <button onClick={startAnimation}>Start</button>
-      <button onClick={stopAnimation}>Stop</button>
-      <div>
-        {displayedNumbers.slice(currentNumberIndex, currentNumberIndex + numbersToDisplay).map(number => <div key={number}>{number}</div>)}
+    <div className='slot-machine'>
+      <button onClick={handleSpinClick}>{spin ? 'STOP' : 'SPIN'}</button>
+      <div className='number-display'>
+        {numbers.map((column, columnIndex) => (
+          <div key={columnIndex} className='number'>
+            {column.map((number, numberIndex) => (
+              <div key={numberIndex} className={`number-inner ${spin ? 'spin' : ''}`}>
+                {number}
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   );
-};
+}
 
 export default Losowanie2;
