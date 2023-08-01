@@ -11,21 +11,31 @@ const generateShuffledNumbers = (min, max) => {
   return numbers;
 };
 
-const Div = ({ startAnimation, number, animationDuration, minNumber, maxNumber, handleSliderChange, displayedNumbersProp }) => {
+const Div = ({ startAnimation, animationDuration, minNumber, maxNumber, handleSliderChange, displayedNumbersProp, onStop, number }) => {
   const [displayedNumbers, setDisplayedNumbers] = useState(displayedNumbersProp || Array.from({length: maxNumber - minNumber + 1}, (_, i) => i + minNumber));
   const [lastStartAnimation, setLastStartAnimation] = useState(false);
+  const [isStopped, setIsStopped] = useState(false); // Nowy stan, który śledzi, czy animacja jest zatrzymana
+
+  const handleStopClick = () => {
+    onStop();
+    setIsStopped(true); // Nowa funkcja, która zatrzymuje animację
+  };
 
   useEffect(() => {
-    if (startAnimation && !lastStartAnimation) {
+    if (startAnimation && !lastStartAnimation && !isStopped) {
       const shuffledNumbers = generateShuffledNumbers(minNumber, maxNumber);
       setDisplayedNumbers(shuffledNumbers);
+    } else if (isStopped) {
+      setIsStopped(false); // Zresetuj stan zatrzymania po zakończeniu animacji
+      setDisplayedNumbers([number]); // Ustaw displayedNumbers na przekazaną liczbę
     }
     setLastStartAnimation(startAnimation);
-  }, [startAnimation, minNumber, maxNumber]);
+  }, [startAnimation, minNumber, maxNumber, isStopped, number]); // Dodaj number do tablicy zależności
 
 
   return (
     <div style={{ margin: '20px' }}>
+      <button onClick={handleStopClick}>Stop</button> {/* Nowy przycisk stop */}
       <div>Speed Break</div>
       <input 
         className='rangeSpeed'
@@ -53,10 +63,11 @@ const Div = ({ startAnimation, number, animationDuration, minNumber, maxNumber, 
 };
 
 const Siatka = () => {
-  const [startAnimations, setStartAnimations] = useState([false, false, false, false, false, false]);
   const [numbers, setNumbers] = useState([]);
+  const [startAnimations, setStartAnimations] = useState([false, false, false, false, false, false]);
+  
   const [displayedNumbersList, setDisplayedNumbersList] = useState([]);
-  const [animationDurations, setAnimationDurations] = useState([0.1, 0.1, 0.1, 0.1, 0.1, 0.1]);
+  const [animationDurations, setAnimationDurations] = useState([0.1, 0.2, 0.6, 0.1, 0.1, 0.1]);
   const [minNumber, setMinNumber] = useState(1);
   const [maxNumber, setMaxNumber] = useState(49);
   const [speedBreak, setSpeedBreak] = useState(3000);
@@ -64,6 +75,7 @@ const Siatka = () => {
 
   const handleClick = () => {
     const nums = new Set();
+    console.log(`S: ${nums}`);
     while(nums.size < 6) {
       nums.add(Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber));
     }
@@ -72,23 +84,34 @@ const Siatka = () => {
 
     // Generuj unikalne listy numerów dla każdego komponentu Div
     const newDisplayedNumbersList = Array(6).fill().map(() => generateShuffledNumbers(minNumber, maxNumber));
+    // console.log(newDisplayedNumbersList);
+    // console.log(`S: `);
     setDisplayedNumbersList(newDisplayedNumbersList);
+    
   }
 
-  useEffect(() => {
-    let timeouts = [];
-    for (let i = 0; i < 6; i++) {
-      timeouts[i] = setTimeout(() => {
-        setStartAnimations(prevStartAnimations => {
-          const newStartAnimations = [...prevStartAnimations];
-          newStartAnimations[i] = false;
-          return newStartAnimations;
-        });
-      }, i * animationDurations[i] * speedBreak);
-    }
+  const stopAnimation = (index) => {
+    setStartAnimations(prevStartAnimations => {
+      const newStartAnimations = [...prevStartAnimations];
+      newStartAnimations[index] = false;
+      return newStartAnimations;
+    });
+  };
+
+  // useEffect(() => {
+  //   let timeouts = [];
+  //   for (let i = 0; i < 6; i++) {
+  //     timeouts[i] = setTimeout(() => {
+  //       setStartAnimations(prevStartAnimations => {
+  //         const newStartAnimations = [...prevStartAnimations];
+  //         newStartAnimations[i] = false;
+  //         return newStartAnimations;
+  //       });
+  //     }, i * animationDurations[i] * speedBreak);
+  //   }
   
-    return () => timeouts.forEach(timeout => clearTimeout(timeout));
-  }, [numbers, animationDurations, speedBreak]); // Add speedBreak to the dependency array
+  //   return () => timeouts.forEach(timeout => clearTimeout(timeout));
+  // }, [numbers, animationDurations, speedBreak]); // Add speedBreak to the dependency array
   
   const handleSpeedBreakChange = (e) => {
     setSpeedBreak(Number(e.target.value)); // Set speedBreak when slider changes
@@ -109,12 +132,13 @@ const Siatka = () => {
       <Div
         key={i}
         startAnimation={startAnimations[i]}
-        number={numbers[i]}
+        number={numbers[i]} // Przekazanie liczby jako prop
         animationDuration={animationDurations[i]}
         minNumber={minNumber}
         maxNumber={maxNumber}
         handleSliderChange={handleSliderChange}
-        displayedNumbersProp={displayedNumbersList[i]} // Zmieniono nazwę na displayedNumbersProp
+        displayedNumbersProp={displayedNumbersList[i]}
+        onStop={() => stopAnimation(i)}
       />
     );
   }
@@ -134,6 +158,8 @@ const Siatka = () => {
         onChange={handleSpeedBreakChange} 
       />
       <button onClick={handleClick}>Losuj liczby</button>
+      
+      
     </div>
   );
 };

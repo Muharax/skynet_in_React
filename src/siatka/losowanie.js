@@ -1,80 +1,69 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-const generateShuffledNumbers = (min, max) => {
-  let numbers = Array.from({ length: max - min + 1 }, (_, i) => i + min);
-  for (let i = numbers.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
-  }
-  return numbers;
-};
+const speed = 90;
 
-const Losowanie2 = () => {
-  const [displayedNumbers, setDisplayedNumbers] = useState(generateShuffledNumbers(1, 49).slice(0, 5));
-  const [animationSpeed, setAnimationSpeed] = useState(1000);
-  const [isRunning, setIsRunning] = useState(false);
+function Losowanie2() {
+  const [numbers, setNumbers] = useState([]);
+  const [isRunning, setIsRunning] = useState(false); 
+  const intervalId = useRef(null); 
 
-  useEffect(() => {
-    let intervalId;
-
-    if (isRunning) {
-      intervalId = setInterval(() => {
-        let newNumbers = generateShuffledNumbers(1, 49);
-        setDisplayedNumbers((prevNumbers) => [
-          newNumbers[0],
-          ...prevNumbers.slice(0, prevNumbers.length - 1),
-        ]);
-      }, animationSpeed);
+  const generateRandomNumber = () => {
+    const randomNumber = Math.floor(Math.random() * 20) + 1;
+    if(numbers.includes(randomNumber)) {
+      return generateRandomNumber();
     }
 
-    return () => clearInterval(intervalId);
-  }, [isRunning, animationSpeed]);
+    setNumbers(prevNumbers => {
+      if (prevNumbers.length >= 5) {
+        return [...prevNumbers.slice(1), randomNumber];
+      } 
 
-  const startAnimation = () => {
-    setIsRunning(true);
-  };
+      return [...prevNumbers, randomNumber];
+    });
+  }
 
-  const stopAnimation = () => {
-    setIsRunning(false);
-  };
+  const handleButtonClick = () => {
+    setIsRunning(!isRunning);
+  }
+
+  useEffect(() => {
+    if (isRunning) {
+      intervalId.current = setInterval(generateRandomNumber, speed);
+    } else {
+      // If the generating is running, stop the generating
+      if (intervalId.current) clearInterval(intervalId.current);
+    }
+  }, [isRunning]); 
+
+  useEffect(() => {
+    for(let i = 0; i < 5; i++) {
+      generateRandomNumber();
+    }
+  }, []);
 
   return (
-    <div style={{ margin: '20px' }}>
-      <div>Speed Break</div>
-      <input
-        className="rangeSpeed"
-        type="range"
-        min="1"
-        max="5"
-        step="0.1"
-        value={animationSpeed / 1000}
-        onChange={(e) => setAnimationSpeed(e.target.value * 1000)}
-        orient="vertical"
-        style={{ writingMode: 'bt-lr' }}
-      />
-      <div
-        style={{
-          width: '50px',
-          height: '100px',
-          border: '1px solid black',
-          backgroundColor: '#eee',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-          overflow: 'hidden',
-        }}
-      >
-        {displayedNumbers.map((number, index) => (
-          <div key={index} style={{ height: '20px' }}>
-            {number}
-          </div>
+    <div className='zaLeb'>
+      <button onClick={handleButtonClick}>{isRunning ? 'STOP' : 'START'}</button>
+      <TransitionGroup component={null}>
+        {numbers.map((number, index) => (
+          <CSSTransition key={index} timeout={500} classNames='move'>
+            <div 
+              key={index} 
+              className={`number-div  ${
+
+                    index === 1 ? 'special-up number-animation' :
+                    index === 2 ? 'special-div number-animation' : 
+                    index === 3 ? 'special-down number-animation' : ''
+
+                  }`}>
+              {number}
+            </div>
+          </CSSTransition>
         ))}
-      </div>
-      <button onClick={startAnimation}>Start</button>
-      <button onClick={stopAnimation}>Stop</button>
+      </TransitionGroup>
     </div>
   );
-};
+}
 
 export default Losowanie2;
