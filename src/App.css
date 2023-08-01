@@ -87,6 +87,7 @@
   border: 0px;
   border-radius: 3px;
 }
+
 @keyframes spin {
   0% { transform: translateY(-30px); }
   100% { transform: translateY(30px); }
@@ -94,6 +95,11 @@
 
 .number-spin {
   animation: spin 0.5s linear infinite;
+}
+.rangeSpeed{
+  width: 45%;
+  position: relative;
+  left: -7px;
 }
 
 

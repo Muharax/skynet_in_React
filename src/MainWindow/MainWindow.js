@@ -7,6 +7,8 @@ import Search from "./Search/Search";
 import LogoutX from "../logout/logout";
 import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
 import Siatka from "../siatka/siatka";
+import Losowanie from "../siatka/losowanie";
+import Losowanie2 from "../siatka/losowanie2";
 import '../App.css';
 
 function MainWindow({ handleLogout, serverMessage, role }) {
@@ -43,6 +45,8 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                         <div className={`MENU ${isOpen ? 'open' : ''}`}>
                             <Link to="/Home">Home</Link>
                             <Link to="/Lotto">Lotto</Link>
+                            <Link to="/Losowanie">Losowanie</Link>
+                            <Link to="/Losowanie2">Losowanie 2</Link>
                             <Link to="/Uzytkownicy">Uzytkownicy BEZ ADMIN</Link>
                             {role === 'admin' && <Link to="/Uzytkownicy">Uzytkownicy</Link>}
                         </div>
@@ -53,6 +57,8 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                                 <Route path="/" element={<Home />} />
                                 <Route path="/Home" element={<Home />} />
                                 <Route path="/Lotto" element={<Siatka />} />
+                                <Route path="/Losowanie" element={<Losowanie /> } />
+                                <Route path="/Losowanie2" element={<Losowanie2 /> } />
                             </Routes>
                             <PrivateRoute path="/Uzytkownicy" element={<Uzytkownicy />} setAlertMessage={setAlertMessage} />
                         </div>
