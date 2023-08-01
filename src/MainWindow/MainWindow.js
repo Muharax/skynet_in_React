@@ -6,6 +6,7 @@ import logo from './img/logo.png';
 import Search from "./Search/Search";
 import LogoutX from "../logout/logout";
 import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
+import Siatka from "../siatka/siatka";
 
 function MainWindow({ handleLogout, serverMessage, role}){
 
@@ -35,6 +36,7 @@ function MainWindow({ handleLogout, serverMessage, role}){
                         <div className="MENU">
                         
                         <Link to="/Home">Home</Link>
+                        <Link to="/Lotto">Lotto</Link>
                         <Link to="/Uzytkownicy">Uzytkownicy BEZ ADMIN</Link>
                         {role === 'admin' && <Link to="/Uzytkownicy">Uzytkownicy</Link>}
                          
@@ -46,7 +48,7 @@ function MainWindow({ handleLogout, serverMessage, role}){
                             <Routes>
                                 <Route path="/" element={<Home />} />
                                 <Route path="/Home" element={<Home />} />
-                                <Route path="/Finanse" element={<Home />} />
+                                <Route path="/Lotto" element={<Siatka />} />
                             </Routes>
                                 <PrivateRoute path="/Uzytkownicy" element={<Uzytkownicy />} setAlertMessage={setAlertMessage} />
                             

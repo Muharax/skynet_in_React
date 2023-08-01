@@ -6,11 +6,7 @@ const cors = require('cors');
 const path = require('path');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
-
-
-const generateToken = () => {
-  return '_' + Math.random().toString(36).substr(2, 9);
-};
+// import verifyToken from './server/verifyToken';
 
 // const MongoClient = require('mongodb').MongoClient;
 
@@ -127,6 +123,7 @@ app.post('/logowanie', (req, res) => {
     }
   });
 });
+
 app.delete('/usunUzytkownika/:id', (req, res) => {
   const { pin, userId } = req.body; // Pobierz pin i userId z ciała żądania
   console.log(`PIN: ${pin}`);
