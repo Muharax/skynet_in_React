@@ -1,5 +1,5 @@
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const checkRole = (path) => {
   const role = localStorage.getItem('role');

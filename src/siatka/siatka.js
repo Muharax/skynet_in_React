@@ -1,3 +1,5 @@
+// W pliku App.js
+
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
@@ -5,7 +7,7 @@ import './App.css';
 const animationSpeed = 20;
 
 // Komponent Div
-const Div = ({ startAnimation, number }) => {
+const Div = ({ startAnimation, number, showNumber }) => { // Dodano showNumber
   const [displayedNumber, setDisplayedNumber] = useState(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -24,10 +26,11 @@ const Div = ({ startAnimation, number }) => {
       setTimeout(() => {
         clearInterval(interval);
         setIsAnimating(false);
-        setDisplayedNumber(number);
       }, 2000);
+    } else if (showNumber) { // Pokaż wylosowaną liczbę, tylko jeśli showNumber jest prawda
+      setDisplayedNumber(number);
     }
-  }, [isAnimating, number]);
+  }, [isAnimating, number, showNumber]); // Dodano showNumber
 
   return (
     <div 
@@ -39,17 +42,27 @@ const Div = ({ startAnimation, number }) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        overflow: 'hidden',  // Dodane, aby ukryć przewijane liczby
       }}
     >
-      {displayedNumber}
+      <div 
+        className={isAnimating ? 'number-spin' : ''} 
+        style={{ 
+          position: 'relative',  // Dodane, aby umożliwić przesunięcie
+          top: isAnimating ? '0px' : '0px'  // Dodane, aby umożliwić przesunięcie
+        }}
+      >
+        {displayedNumber}
+      </div>
     </div>
   );
-}
+};
 
 // Komponent Siatka
 const Siatka = () => {
   const [startAnimation, setStartAnimation] = useState(false);
   const [numbers, setNumbers] = useState([]);
+  const [activeNumber, setActiveNumber] = useState(0); // Nowy stan
   const grid = [];
 
   const handleClick = () => {
@@ -64,9 +77,12 @@ const Siatka = () => {
   useEffect(() => {
     if (!startAnimation) return;
 
-    const timeout = setTimeout(() => {
-      setStartAnimation(false);
-    }, 2000);
+    let timeout;
+    for (let i = 0; i < 6; i++) {
+      timeout = setTimeout(() => {
+        setActiveNumber(i);
+      }, i * 2000);
+    }
 
     return () => clearTimeout(timeout);
   }, [startAnimation]);
@@ -75,8 +91,9 @@ const Siatka = () => {
     grid.push(
       <Div
         key={i}
-        startAnimation={startAnimation}
+        startAnimation={startAnimation && i === activeNumber}
         number={numbers[i]}
+        showNumber={i <= activeNumber} // Dodano showNumber
       />
     );
   }

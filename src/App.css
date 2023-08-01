@@ -71,22 +71,63 @@
 .MENU.open {
   display: block;
 }
+#name, #pass{
+  display: flex;
+  margin-top: 2px;
+  justify-content: space-around;
+}
+#name > input{
+  outline: none;
+  border: 0px;
+  border-radius: 3px;
+}
+
+#pass > input{
+  outline: none;
+  border: 0px;
+  border-radius: 3px;
+}
+@keyframes spin {
+  0% { transform: translateY(-30px); }
+  100% { transform: translateY(30px); }
+}
+
+.number-spin {
+  animation: spin 0.5s linear infinite;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Style dla większych ekranów */
 @media (min-width: 600px) {
   .menu-button {
     display: none;
   }
+  .COL2 {
+    flex-direction: row;
+}
 
   .MENU {
     box-shadow: none;
     background: transparent;
     width: auto;
     display: flex;
-    gap: 10px;
   }
   .COL2 {
-     flex-direction: column;
+     /* flex-direction: column; */
+     margin-left: 10px;
 }
 }
 
@@ -96,6 +137,15 @@
 }
 .B2 {
   width: 100%;
+}
+.search-input {
+  min-width: auto;
+  width: 210px;
+  
+}
+.logo-img {
+  width: 70px;
+  height: 35px;
 }
 }
 

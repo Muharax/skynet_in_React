@@ -84,7 +84,7 @@ function Logowanie({ handleLogin }) {
               />
 
             <div id="name">
-              <i className="material-icons prefix cwhite">apps</i>
+              <i className="material-icons prefix cwhite">🙍‍♂️</i>
               <input
                 type="text"
                 id="first"
@@ -100,7 +100,7 @@ function Logowanie({ handleLogin }) {
             </div>
 
             <div id="pass">
-              <i className="material-icons prefix cwhite">lock</i>
+              <i className="material-icons prefix cwhite">🔑</i>
               <input
                 type="password"
                 id="second"
