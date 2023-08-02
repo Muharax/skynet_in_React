@@ -1,1 +1,1 @@
-const role = localStorage.getItem('role');
+const role = localStorage.getItem('role'); - zapisywanie do localstorage

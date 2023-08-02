@@ -10,6 +10,8 @@ import Siatka from "../siatka/siatka";
 import Losowanie from "../siatka/losowanie";
 import Losowanie2 from "../siatka/losowanie2";
 import Test from "../test/test";
+import Test2 from "../test/test2";
+import Test3 from "../test/test3-ApolloTest";
 import '../App.css';
 
 function MainWindow({ handleLogout, serverMessage, role }) {
@@ -49,6 +51,8 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                             <Link to="/Losowanie">Losowanie</Link>
                             <Link to="/Losowanie2">Losowanie 2</Link>
                             <Link to="/Test">Test</Link>
+                            <Link to="/Test2">Test2</Link>
+                            <Link to="/Test3">REST-Apollo</Link>
                             <Link to="/Uzytkownicy">Uzytkownicy BEZ ADMIN</Link>
                             {role === 'admin' && <Link to="/Uzytkownicy">Uzytkownicy</Link>}
                         </div>
@@ -62,6 +66,8 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                                 <Route path="/Losowanie" element={<Losowanie /> } />
                                 <Route path="/Losowanie2" element={<Losowanie2 /> } />
                                 <Route path="/Test" element={<Test /> } />
+                                <Route path="/Test2" element={<Test2 /> } />
+                                <Route path="/Test3" element={<Test3 /> } />
                             </Routes>
                             <PrivateRoute path="/Uzytkownicy" element={<Uzytkownicy />} setAlertMessage={setAlertMessage} />
                         </div>

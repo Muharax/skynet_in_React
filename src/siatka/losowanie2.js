@@ -9,8 +9,9 @@ function generateRandomNumbers(n, min, max) {
   return arr;
 }
 
-let randomNumbers = generateRandomNumbers(5, 1, 100); // generates 5 random numbers between 1 and 100
-console.log(randomNumbers);
+
+
+
 
 
 function Losowanie2() {
@@ -21,6 +22,7 @@ function Losowanie2() {
   ]);
   const [spin, setSpin] = useState(false);
   const intervalId = useRef(null);
+
 
   const spinColumn = (columnIndex) => {
     setNumbers(prevNumbers => {
