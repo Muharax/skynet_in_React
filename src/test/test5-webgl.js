@@ -1,52 +1,226 @@
-import React, { useRef, useEffect } from "react";
-import * as THREE from "three";
+import React, { useState, useEffect } from 'react';
+import Tooltip from './test4-tooltip-component';
 
-function Webgl() {
-  // const refDiv = useRef(null);
 
-  // useEffect(() => {
-  //   // Tworzenie sceny, kamery i renderera
-  //   const scene = new THREE.Scene();
-  //   const camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 1, 1000);
-  //   const renderer = new THREE.WebGLRenderer();
+const TreeNode = ({ node, shouldOpen }) => {
+  const [isOpen, setIsOpen] = useState(shouldOpen);
 
-  //   // Dodawanie renderera do elementu div
-  //   refDiv.current.appendChild(renderer.domElement);
-  //   renderer.setSize(window.innerWidth, window.innerHeight);
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  }
 
-  //   // Ustawienie kamery
-  //   camera.position.set(2, 2, 2);
-  //   camera.lookAt(scene.position);
+  useEffect(() => {
+    setIsOpen(shouldOpen);
+  }, [shouldOpen]);
 
-  //   // Dodawanie kształtu i materiału
-  //   const geometry = new THREE.BoxGeometry(1, 1, 1);
-  //   const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+  return (
+    <ul style={{ listStyleType: 'none', userSelect: 'none' }}>
+      <li>
+        <button  className="noo" onClick={handleToggle} disabled={!node.children || node.children.length === 0}>
+          {node.children && node.children.length > 0 ? (isOpen ? '-' : '+') : ''}
+        </button>
+        {node.position} - {node.name}
+        {isOpen && node.children && (
+          <ul>
+            {node.children.map(childNode => (
+              <TreeNode key={childNode.id} node={childNode} shouldOpen={shouldOpen}/>
+            ))}
+          </ul>
+        )}
+      </li>
+    </ul>
+  );
+};
 
-  //   // Tworzenie siatki
-  //   const grid = new THREE.Group();
-  //   for(let i = -25; i < 25; i++) {
-  //     for(let j = -25; j < 25; j++) {
-  //       const cube = new THREE.Mesh(geometry, material);
-  //       cube.position.set(i, 0, j);
-  //       grid.add(cube);
-  //     }
-  //   }
+const Tree = ({ data, shouldOpen }) => (
+  <div style={{ maxHeight: '500px', overflowX: 'auto' }}>
+    {data.map(node => (
+      <TreeNode key={node.id} node={node} shouldOpen={shouldOpen} />
+    ))}
+  </div>
+);
 
-  //   // Dodanie siatki do sceny
-  //   scene.add(grid);
+const Webgl = () => {
+  const [allOpen, setAllOpen] = useState(false);
 
-  //   // Funkcja animacji
-  //   const animate = function () {
-  //     requestAnimationFrame(animate);
+  const handleToggleAll = () => {
+    setAllOpen(!allOpen);
+  }
 
-  //     renderer.render(scene, camera);
-  //   };
+  const treeData = [
+    {
+      id: 1,
+      position: 'CEO',
+      name: 'John Doe',
+      children: [
+        {
+          id: 2,
+          position: 'CTO',
+          name: 'Jane Smith',
+          children: [
+            {
+              id: 3,
+              position: 'Engineer',
+              name: 'Bob Johnson',
+            },
+            {
+              id: 4,
+              position: 'Designer',
+              name: 'Alice Williams',
+            },
+            {
+              id: 4,
+              position: 'Designer',
+              name: 'Alice Williams',
+            },
+            {
+              id: 4,
+              position: 'Designer',
+              name: 'Alice Williams',
+            },
+            {
+              id: 4,
+              position: 'Designer',
+              name: 'Alice Williams',
+            },{
+              id: 4,
+              position: 'Designer',
+              name: 'Alice Williams',
+            },
+          ],
+        },
+        {
+          id: 5,
+          position: 'CFO',
+          name: 'Charlie Brown',
+          children: [
+            {
+              id: 6,
+              position: 'Accountant',
+              name: 'Grace Davis',
+            },
+          ],
+        },
+        {
+          id: 5,
+          position: 'CFS',
+          name: 'Halabazda Harabelduha',
+          children: [
+            {
+              id: 6,
+              position: 'Engineer',
+              name: 'Grace Davis',
+              children: [
+                {
+                  id: 7,
+                  position: 'Halabazda',
+                  name: 'Idi na H',
+                  children: [
+                    {
+                      id: 8,
+                      position: 'Halabazda',
+                      name: 'Idi na HUJ',
+                      children: [
+                        {
+                          id: 9,
+                          position: 'Halabazda',
+                          name: 'Idi na HUJ',
+                          children: [
+                            {
+                              id: 10,
+                              position: 'Halabazda',
+                              name: 'Idi na HUJ',
+                              children: [
+                                {
+                                  id: 11,
+                                  position: 'Halabazda',
+                                  name: 'Idi na HUJ',
+                                  children: [
+                                    {
+                                      id: 12,
+                                      position: 'Halabazda',
+                                      name: 'Idi na HUJ',
+                                      children: [
+                                        {
+                                          id: 13,
+                                          position: 'Halabazda',
+                                          name: 'Idi na HUJ',
+                                          children: [
+                                            {
+                                              id: 14,
+                                              position: 'Halabazda',
+                                              name: 'Idi na HUJ',
+                                              children: [
+                                                {
+                                                  id: 15,
+                                                  position: 'Halabazda',
+                                                  name: 'Idi na HUJ',
+                                                  children: [
+                                                    {
+                                                      id: 16,
+                                                      position: 'Halabazda',
+                                                      name: 'Idi na HUJ',
+                                                    },
+                                                  ],
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 5,
+      position: 'GHP',
+      name: 'Dyrektor finansowy',
+      children: [
+        {
+          id: 2,
+          position: 'Halabazda',
+          name: 'Idi na HUJ',
+          children: [
+            {
+              id: 2,
+              position: 'Halabazda',
+              name: 'Idi na HUJ',
+            },
+          ],
+        },
+      ],
+    },
+  ];
 
-  //   animate();
-  // }, []);
+  return (
+  
+  <>
+    <Tooltip text="Hello World! Siema ENIU">
+      <h4 className='h4'>SIEMA TOOLTIP, SIEMA ENIU, SIEMA BARABELUZDO, SIEMA MANDEBARDEHULDA</h4>
+      </Tooltip>
 
-  // return <div ref={refDiv} />;
-  return <div>SIEM WEB GL</div>;
-}
+    <div className='noo'>
+      <button onClick={handleToggleAll}>
+        {allOpen ? 'Close' : 'Open'}
+      </button>
+      <Tree data={treeData} shouldOpen={allOpen} />
+    </div>
+    </>
+  );
+};
 
 export default Webgl;

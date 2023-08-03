@@ -59,7 +59,7 @@ function Logowanie({ handleLogin }) {
     // } catch (error) {
     //   setServerMessage(`Niepoprawne dane logowania: ${error.message}`);
     // }  finally {
-        // console.log('Blok finally - logowanie');
+    //     console.log('Blok finally - logowanie');
     // }
 
 

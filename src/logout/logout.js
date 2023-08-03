@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom'; // import useNavigate
+import './logout.css';
 
 function LogoutX({ onLogout }) {
   const navigate = useNavigate(); // Utwórz instancję navigate

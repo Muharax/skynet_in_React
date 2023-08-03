@@ -32,7 +32,7 @@ const SYSTEM = 'SYSTEM :';
 
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
+  user: 'roor',
   password: '',
   database: 'skynet'
 });

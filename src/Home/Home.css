@@ -1,0 +1,12 @@
+.homeLogoDivMain{
+   text-align: center;
+}
+
+.homeLogoDiv{
+   width: 200px;
+}
+
+.homeLogoDivImg{
+   width: 100%;
+   object-fit: cover;
+}

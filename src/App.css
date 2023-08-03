@@ -98,19 +98,35 @@
 
 
 
+/* .noo{
+  width: 20%;
+}
 
 
 
+ */
 
 
+ul {
+  min-width: 300px;
+  padding-inline-start: 7px;
+}
 
 
+.h4{
+  display: flex;
+  justify-content: space-around;
+  background-color: black;
+  padding: 7px;
+  border-radius: 7px;
+  color: white;
+}
 
 
-
-
-
-
+.btnPlusMinus{
+  min-width: 28px;
+  text-align: center;
+}
 
 
 
@@ -273,7 +289,6 @@
   .MENU {
     box-shadow: none;
     background: transparent;
-    width: auto;
     display: flex;
   }
   .COL2 {

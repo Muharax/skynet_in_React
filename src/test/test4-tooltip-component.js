@@ -8,16 +8,14 @@ function Tooltip({ children, text }) {
     <div 
       onMouseOver={() => setShowTooltip(true)}
       onMouseOut={() => setShowTooltip(false)}
-      style={{ position: 'relative', display: 'inline-block' }}
     >
       {children}
       {showTooltip && (
         <div 
           style={{
             position: 'absolute',
-            top: '50%',        // umieść na środku (w pionie) względem elementu
-            left: '100%',      // umieść po prawej stronie elementu
-            transform: 'translateY(-50%)',  // wycentruj w pionie
+            top: '10px',        // umieść na środku (w pionie) względem elementu
+            left: '0px',      // umieść po prawej stronie elementu
             marginLeft: '10px', // dodaj trochę odstępu od elementu
             backgroundColor: 'black',
             color: 'white',

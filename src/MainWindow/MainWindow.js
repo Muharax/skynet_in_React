@@ -13,8 +13,8 @@ import Test from "../test/test";
 import Test2 from "../test/test2";
 import Test3 from "../test/test3-ApolloTest";
 import '../App.css';
-import TooltipTEST from "../test/test4-tooltip-site";
 import Webgl from "../test/test5-webgl";
+import UserPanel from "../userpanel/userpanel";
 
 function MainWindow({ handleLogout, serverMessage, role }) {
     const [alertMessage, setAlertMessage] = useState('null');
@@ -27,6 +27,7 @@ function MainWindow({ handleLogout, serverMessage, role }) {
     return (
         <Router>
             <LogoutX onLogout={handleLogout} />
+            <UserPanel></UserPanel>
             <div className="alert"></div>
             <div className="MainWindow">
                 <div className="alert">
@@ -41,6 +42,7 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                     <div className="B1">
                         <Search />
                     </div>
+                   
                 </div>
                 <div className="COL2">
                     <div className="A2">
@@ -56,8 +58,7 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                             <Link to="/Test">Test</Link>
                             <Link to="/Test2">Test2</Link>
                             <Link to="/Test3">REST-Apollo</Link>
-                            <Link to="/tooltip">Tool-TIP-TEST</Link>
-                            <Link to="/webgl">Web GL</Link>
+                            <Link to="/webgl">Drzewo Komponentów</Link>
                             <Link to="/Uzytkownicy">Uzytkownicy BEZ ADMIN</Link>
                             {role === 'admin' && <Link to="/Uzytkownicy">Uzytkownicy</Link>}
                         </div>
@@ -73,7 +74,6 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                                 <Route path="/Test" element={<Test /> } />
                                 <Route path="/Test2" element={<Test2 /> } />
                                 <Route path="/Test3" element={<Test3 /> } />
-                                <Route path="/tooltip" element={<TooltipTEST /> } />
                                 <Route path="/webgl" element={<Webgl /> } />
                             </Routes>
                             <PrivateRoute path="/Uzytkownicy" element={<Uzytkownicy />} setAlertMessage={setAlertMessage} />
