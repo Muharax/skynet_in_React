@@ -36,33 +36,37 @@ function Logowanie({ handleLogin }) {
 
 
     // OPERACJA DLA BAZY DANYCH
-  //   try {
-  //     const response = await fetch(`${URL}/logowanie`, {
-  //       method: 'post',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({ username, password, token })
-  //     });
 
-  //     const data = await response.json();
 
-  //     if (data.token) {
-  //       setServerMessage(data.message);
-  //       localStorage.setItem('token', data.token);
-  //       const decodedToken = jwtDecode(data.token);
-  //       localStorage.setItem('user', decodedToken.user);
-  //       localStorage.setItem('role', decodedToken.role);
-  //         console.log(`Użytkownik: ${decodedToken.user}, Token: ${data.token}, Rola: ${decodedToken.role}`);
-  //       handleLogin(data.message);
-  //     }
-  //   } catch (error) {
-  //     setServerMessage(`Niepoprawne dane logowania: ${error.message}`);
-  //   }
+    // try {
+    //   const response = await fetch(`${URL}/logowanie`, {
+    //     method: 'post',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ username, password, token })
+    //   });
+
+    //   const data = await response.json();
+
+    //   if (data.token) {
+    //     setServerMessage(data.message);
+    //     localStorage.setItem('token', data.token);
+    //     const decodedToken = jwtDecode(data.token);
+    //     localStorage.setItem('user', decodedToken.user);
+    //     localStorage.setItem('role', decodedToken.role);
+    //       console.log(`Użytkownik: ${decodedToken.user}, Token: ${data.token}, Rola: ${decodedToken.role}`);
+    //     handleLogin(data.message);
+    //   }
+    // } catch (error) {
+    //   setServerMessage(`Niepoprawne dane logowania: ${error.message}`);
+    // }  finally {
+        // console.log('Blok finally - logowanie');
+    // }
 
 
   };
   
 
-  // Rest of your component...
+  // return ...
 
   return (
     <div id="LOGOWANIE">

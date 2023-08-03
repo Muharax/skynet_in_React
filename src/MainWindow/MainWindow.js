@@ -13,6 +13,8 @@ import Test from "../test/test";
 import Test2 from "../test/test2";
 import Test3 from "../test/test3-ApolloTest";
 import '../App.css';
+import TooltipTEST from "../test/test4-tooltip-site";
+import Webgl from "../test/test5-webgl";
 
 function MainWindow({ handleLogout, serverMessage, role }) {
     const [alertMessage, setAlertMessage] = useState('null');
@@ -46,13 +48,16 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                             ☰
                         </button>
                         <div className={`MENU ${isOpen ? 'open' : ''}`}>
-                            <Link to="/Home">Home</Link>
+
+                            <Link to="/Home" >Home</Link>
                             <Link to="/Lotto">Lotto</Link>
                             <Link to="/Losowanie">Losowanie</Link>
                             <Link to="/Losowanie2">Losowanie 2</Link>
                             <Link to="/Test">Test</Link>
                             <Link to="/Test2">Test2</Link>
                             <Link to="/Test3">REST-Apollo</Link>
+                            <Link to="/tooltip">Tool-TIP-TEST</Link>
+                            <Link to="/webgl">Web GL</Link>
                             <Link to="/Uzytkownicy">Uzytkownicy BEZ ADMIN</Link>
                             {role === 'admin' && <Link to="/Uzytkownicy">Uzytkownicy</Link>}
                         </div>
@@ -68,6 +73,8 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                                 <Route path="/Test" element={<Test /> } />
                                 <Route path="/Test2" element={<Test2 /> } />
                                 <Route path="/Test3" element={<Test3 /> } />
+                                <Route path="/tooltip" element={<TooltipTEST /> } />
+                                <Route path="/webgl" element={<Webgl /> } />
                             </Routes>
                             <PrivateRoute path="/Uzytkownicy" element={<Uzytkownicy />} setAlertMessage={setAlertMessage} />
                         </div>
