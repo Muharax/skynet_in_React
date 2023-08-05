@@ -54,7 +54,7 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                             <Link to="/Home" >Home</Link>
                             <Link to="/Lotto">Lotto</Link>
                             <Link to="/Losowanie">Losowanie</Link>
-                            <Link to="/Siatka-Izometryczna">Siatka Izometryczna</Link>
+                            <Link to="/Siatka-Izometryczna">Siatka Izometrycznaa</Link>
                             <Link to="/Test">Test2</Link>
                             <Link to="/Test3">REST-Apollo</Link>
                             <Link to="/webgl">Drzewo Komponentów</Link>
