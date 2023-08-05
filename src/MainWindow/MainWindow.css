@@ -1,0 +1,21 @@
+.B1, .search, .szukajBtnDiv{
+    display: flex;
+    align-items: center;
+}
+.search-input {
+    min-width: auto;
+}
+.szukajBtnDiv{
+    margin-left: 7px;
+}
+.search-SVG{
+    display: flex;
+    border-radius: 25px;
+    position: relative;
+    left: 45px;
+    cursor: pointer;
+    align-items: center;
+}
+.svgHover:hover{
+    transform: scale(1.2);
+}

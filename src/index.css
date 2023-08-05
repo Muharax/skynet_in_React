@@ -43,12 +43,7 @@ code {
 .B1{
 
 }
-.B2{
-  width: 80%;
-  background-color: var(--window-load-color);
-  border-radius: 7px;
-  padding: 7px;
-}
+
 .MENU{
   display: flex;
   flex-direction: column;
@@ -76,13 +71,6 @@ code {
   background-color: var(--search);
   min-width: 150%;
   height: 40px;
-}
-.search-SVG {
-  padding: 8px;
-  border-radius: 25px;
-  position: relative;
-  left: 45px;
-  cursor: pointer;
 }
 .vh80{
   height: 70vh;

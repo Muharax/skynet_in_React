@@ -38,7 +38,9 @@
   }
 }
 
-
+*{
+  font-family: monospace, Arial, Helvetica, sans-serif;
+}
 
 
 .menu-button {
@@ -301,14 +303,8 @@ ul {
   .COL2 {
      flex-direction: column;
 }
-.B2 {
-  width: 100%;
-}
-.search-input {
-  min-width: auto;
-  width: 210px;
-  
-}
+
+
 .logo-img {
   width: 70px;
   height: 35px;

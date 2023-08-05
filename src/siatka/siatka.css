@@ -1,0 +1,25 @@
+.B2{
+  width: 100%;
+  background-color: var(--window-load-color);
+  border-radius: 7px;
+  padding: 7px;
+}
+
+@media (max-width: 600px) {
+
+  .B2{
+    width: auto;
+  }
+  h1{
+    display: flex;
+    justify-content: center;
+  }
+  .grido1{
+    display: flex;
+    flex-wrap: wrap; 
+  }
+  .grido2{
+    flex: 1 0 100px; /* Zmieniaj tą wartość, aby dostosować, kiedy elementy będą przechodzić do następnej linii */
+    margin: 5px;
+  }
+}

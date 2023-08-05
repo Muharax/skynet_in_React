@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './App.css';
+import './siatka.css';
 
 const generateShuffledNumbers = (min, max) => {
   let numbers = Array.from({length: max - min + 1}, (_, i) => i + min);
@@ -34,7 +35,7 @@ const Div = ({ startAnimation, animationDuration, minNumber, maxNumber, handleSl
 
 
   return (
-    <div style={{ margin: '20px' }}>
+    <div className='grido2'>
       <button onClick={handleStopClick}>Stop</button> {/* Nowy przycisk stop */}
       <div>Speed Break</div>
       <input 
@@ -144,9 +145,9 @@ const Siatka = () => {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div>
       <h1>Losowanie Lotto</h1>
-      <div style={{ display: 'flex' }}>
+      <div className='grido1'>
         {grid}
       </div>
       <input 
