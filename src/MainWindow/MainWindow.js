@@ -15,6 +15,8 @@ import Webgl from "../test/test5-webgl";
 import UserPanel from "../userpanel/userpanel";
 import './MainWindow.css';
 import CanvasComponent from "../siatka/siatka-izometryczna";
+import Open from "../gra/open/open";
+import TreeGame2 from "../gra/open2/open2";
 
 function MainWindow({ handleLogout, serverMessage, role }) {
     const [alertMessage, setAlertMessage] = useState('null');
@@ -59,6 +61,8 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                             <Link to="/Test3">REST-Apollo</Link>
                             <Link to="/webgl">Drzewo Komponentów</Link>
                             <Link to="/Uzytkownicy">Uzytkownicy BEZ ADMIN</Link>
+                            <Link to="/Open">Gra Open</Link>
+                            <Link to="/TreeGame2">Gra Open 2</Link>
                             {role === 'admin' && <Link to="/Uzytkownicy">Uzytkownicy</Link>}
                         </div>
                     </div>
@@ -73,6 +77,8 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                                 <Route path="/Test" element={<Test2 /> } />
                                 <Route path="/Test3" element={<Test3 /> } />
                                 <Route path="/webgl" element={<Webgl /> } />
+                                <Route path="/Open" element={<Open /> } />
+                                <Route path="/TreeGame2" element={<TreeGame2 /> } />
                             </Routes>
                             <PrivateRoute path="/Uzytkownicy" element={<Uzytkownicy />} setAlertMessage={setAlertMessage} />
                         </div>

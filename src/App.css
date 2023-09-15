@@ -42,6 +42,52 @@
   font-family: monospace, Arial, Helvetica, sans-serif;
 }
 
+.losowanieR{
+  background-color: #d5d5d5;
+}
+
+.move-enter-done{
+  display: flex;
+  justify-content: center;
+  padding: 3px;
+  
+}
+
+.special-div{
+  background-color: beige;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.srodekK{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.zaLeb{
+  /* width: 70px; */
+  /* height: 160px; */
+  background-color: rgb(165, 165, 165);
+  padding: 7px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px;
+}
+.btnStartStop{
+  width: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 .menu-button {
   font-size: 2rem;
@@ -268,15 +314,7 @@ ul {
   position: relative;
   top: -18px;
 }
-.zaLeb{
-  width: 70px;
-  height: 160px;
-  background-color: rgb(165, 165, 165);
-  padding: 7px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-}
+
 
 
 /* Style dla większych ekranów */
