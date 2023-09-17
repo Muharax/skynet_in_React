@@ -1,14 +1,21 @@
 {
   "files": {
-    "main.css": "/skynet_in_React/static/css/main.34f7247c.css",
-    "main.js": "/skynet_in_React/static/js/main.76b0e33a.js",
+    "main.css": "/skynet_in_React/static/css/main.a5b7a413.css",
+    "main.js": "/skynet_in_React/static/js/main.8742da8c.js",
+    "static/media/postac2Animation.mp4": "/skynet_in_React/static/media/postac2Animation.403fd00ed4dba0fc758a.mp4",
+    "static/media/postac4.jpg": "/skynet_in_React/static/media/postac4.d8dd5deaa083cdfd9386.jpg",
+    "static/media/postac3.jpg": "/skynet_in_React/static/media/postac3.76d528eb9fa2bf524031.jpg",
+    "static/media/postac5.jpg": "/skynet_in_React/static/media/postac5.e997dc45c3dc7c55ff7e.jpg",
+    "static/media/postac2.jpg": "/skynet_in_React/static/media/postac2.5e62a73e9171c48e6574.jpg",
+    "static/media/postac6.jpg": "/skynet_in_React/static/media/postac6.3e03ef32ef732f3c00e9.jpg",
+    "static/media/postac1.jpg": "/skynet_in_React/static/media/postac1.1d1e362364f8ab506b90.jpg",
     "static/media/logo.png": "/skynet_in_React/static/media/logo.f5f5416ca4f84c787b95.png",
     "index.html": "/skynet_in_React/index.html",
-    "main.34f7247c.css.map": "/skynet_in_React/static/css/main.34f7247c.css.map",
-    "main.76b0e33a.js.map": "/skynet_in_React/static/js/main.76b0e33a.js.map"
+    "main.a5b7a413.css.map": "/skynet_in_React/static/css/main.a5b7a413.css.map",
+    "main.8742da8c.js.map": "/skynet_in_React/static/js/main.8742da8c.js.map"
   },
   "entrypoints": [
-    "static/css/main.34f7247c.css",
-    "static/js/main.76b0e33a.js"
+    "static/css/main.a5b7a413.css",
+    "static/js/main.8742da8c.js"
   ]
 }
