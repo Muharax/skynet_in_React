@@ -1,0 +1,63 @@
+*{
+  font-family: system-ui, -apple-system, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.avatar-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #f39c12; /* złoty kolor, aby pasował do innych akcentów */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+.avatar-card {
+  margin: 20px;
+  width: 220px;
+  height: auto;
+  border: none;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  font-size: 14px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  background: #1a1a1a; /* dark background for contrast */
+  color: white; /* setting text color to white for contrast */
+  cursor: pointer;
+}
+
+.avatar-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.avatar-media {
+  max-width: 100%;
+  max-height: 70%;
+  display: block;
+  object-fit: cover;
+  border-bottom: 3px solid #f39c12; /* gold-like border for visual separation */
+}
+
+.avatar-details {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+
+.avatar-label {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.avatar-stat {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.avatar-stat span {
+  font-weight: bold;
+}

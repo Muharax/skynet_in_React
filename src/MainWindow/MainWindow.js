@@ -18,6 +18,7 @@ import Open from "../gra/open/open";
 import TreeGame2 from "../gra/open2/open2";
 import Game from "../game/game";
 import Game2D from "../gra/open3/open3";
+import Ix from "../gra/wybor-postaci/ix";
 
 function MainWindow({ handleLogout, serverMessage, role }) {
     const [alertMessage, setAlertMessage] = useState('null');
@@ -65,6 +66,7 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                             <Link to="/TreeGame2">Gra Open 2</Link>
                             <Link to="/Game2D">Gra Open 3</Link>
                             <Link to="/Game">Game</Link>
+                            <Link to="/wybor-postaci">Wybór postaci</Link>
                             {role === 'admin' && <Link to="/Uzytkownicy">Uzytkownicy</Link>}
                         </div>
                     </div>
@@ -82,6 +84,7 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                                 <Route path="/Game2D" element={<Game2D /> } />
                                 <Route path="/Game" element={<Game /> } />
                                 <Route path="/TreeGame2" element={<TreeGame2 /> } />
+                                <Route path="/wybor-postaci" element={<Ix /> } />
                             </Routes>
                             <PrivateRoute path="/Uzytkownicy" element={<Uzytkownicy />} setAlertMessage={setAlertMessage} />
                         </div>

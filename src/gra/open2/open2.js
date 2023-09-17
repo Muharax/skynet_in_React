@@ -47,7 +47,7 @@ const Ticket = ({ amount, addToTotal, onSelection, reveal, isGameOver }) => {
   );
 };
 
-const TOTAL_BUTTONS = 50;
+const TOTAL_BUTTONS = 100;
 
 const TreeGame2 = () => {
   const [totalAmount, setTotalAmount] = useState(0);
