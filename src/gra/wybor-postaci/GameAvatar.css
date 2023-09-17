@@ -61,3 +61,8 @@
 .avatar-stat span {
   font-weight: bold;
 }
+
+.avatar-card.flipped {
+  transform: rotateY(180deg);
+}
+

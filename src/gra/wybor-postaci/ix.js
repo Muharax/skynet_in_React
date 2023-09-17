@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './ix.css';
 import { GameAvatarVideo, GameAvatarImage } from './GameAvatar';
 import postac2Animation from './img/postac2Animation.mp4';
@@ -68,8 +68,25 @@ const charactersData = [
   ];
 
   const Ix = () => {
+    const [scale, setScale] = useState(1);  // Stan dla skali
+    
     return (
-      <div>
+      <div className='non-selectable-component'>
+        {/* Suwak do regulacji skali */}
+        <div>
+          <label>
+            Regulacja skali: 
+            <input 
+              type="range" 
+              min="0.50" 
+              max="1.35" 
+              step="0.01" 
+              value={scale} 
+              onChange={e => setScale(e.target.value)} 
+            />
+          </label>
+        </div>
+  
         <div className='wybor-postaci'>
           {charactersData.map(character => (
             <div key={character.name}>
@@ -80,6 +97,7 @@ const charactersData = [
                 defense={character.defense}
                 agility={character.agility}
                 intelligence={character.intelligence}
+                scale={scale}  // przekazanie skali
               />
               <GameAvatarImage 
                 imgSrc={character.imgSrc} 
@@ -88,6 +106,7 @@ const charactersData = [
                 defense={character.defense}
                 agility={character.agility}
                 intelligence={character.intelligence}
+                scale={scale}  // przekazanie skali
               />
             </div>
           ))}

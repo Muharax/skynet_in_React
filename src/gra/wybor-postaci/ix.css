@@ -6,3 +6,11 @@
     border-radius: 10px;
     margin: 10px;
 }
+
+.non-selectable-component {
+    user-select: none;
+    -webkit-user-select: none; /* Dla Safari i Chrome */
+    -moz-user-select: none;    /* Dla Firefox */
+    -ms-user-select: none;     /* Dla IE10+ */
+  }
+  
