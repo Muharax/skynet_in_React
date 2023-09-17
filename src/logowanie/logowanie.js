@@ -18,7 +18,7 @@ function Logowanie({ handleLogin }) {
   const generateToken = () => {
     return '_' + Math.random().toString(36).substr(2, 9);
   };
-
+ 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log('Zanciśnięto przycisk Logowania');

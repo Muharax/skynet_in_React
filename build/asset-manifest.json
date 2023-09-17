@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/skynet_in_React/static/css/main.a5b7a413.css",
-    "main.js": "/skynet_in_React/static/js/main.d3944e07.js",
+    "main.js": "/skynet_in_React/static/js/main.8742da8c.js",
     "static/media/postac2Animation.mp4": "/skynet_in_React/static/media/postac2Animation.403fd00ed4dba0fc758a.mp4",
     "static/media/postac4.jpg": "/skynet_in_React/static/media/postac4.d8dd5deaa083cdfd9386.jpg",
     "static/media/postac3.jpg": "/skynet_in_React/static/media/postac3.76d528eb9fa2bf524031.jpg",
@@ -12,10 +12,10 @@
     "static/media/logo.png": "/skynet_in_React/static/media/logo.f5f5416ca4f84c787b95.png",
     "index.html": "/skynet_in_React/index.html",
     "main.a5b7a413.css.map": "/skynet_in_React/static/css/main.a5b7a413.css.map",
-    "main.d3944e07.js.map": "/skynet_in_React/static/js/main.d3944e07.js.map"
+    "main.8742da8c.js.map": "/skynet_in_React/static/js/main.8742da8c.js.map"
   },
   "entrypoints": [
     "static/css/main.a5b7a413.css",
-    "static/js/main.d3944e07.js"
+    "static/js/main.8742da8c.js"
   ]
 }

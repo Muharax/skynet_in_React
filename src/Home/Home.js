@@ -10,7 +10,7 @@ function Home(){
           <div className="homeLogoDivMain">
              <div className="homeLogoDiv">
                {/* <img className="homeLogoDivImg" src={logo} alt="logo-Skynet"></img> */}
-
+sss
                Co by tu mogło być najlepiej jakiś wykres
              </div>
           </div>
