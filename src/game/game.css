@@ -1,0 +1,34 @@
+.cell {
+   width: 400px;
+   height: 400px;
+   position: relative;
+   background-color: #ddd;
+   border: 5px solid #333;
+}
+
+.item {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   cursor: pointer;
+   padding: 10px;
+   background-color: #aaa;
+   border: 1px solid #888;
+}
+
+.door {
+   position: absolute;
+   bottom: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   width: 100px;
+   height: 200px;
+   background-color: #444;
+   cursor: pointer;
+}
+
+.door.open {
+   background-color: #ddd;
+}
+

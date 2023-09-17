@@ -9,7 +9,6 @@ import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
 import Siatka from "../siatka/siatka";
 import Losowanie from "../siatka/losowanie";
 import Test2 from "../test/test2";
-import Test3 from "../test/test3-ApolloTest";
 import '../App.css';
 import Webgl from "../test/test5-webgl";
 import UserPanel from "../userpanel/userpanel";
@@ -17,6 +16,8 @@ import './MainWindow.css';
 import CanvasComponent from "../siatka/siatka-izometryczna";
 import Open from "../gra/open/open";
 import TreeGame2 from "../gra/open2/open2";
+import Game from "../game/game";
+import Game2D from "../gra/open3/open3";
 
 function MainWindow({ handleLogout, serverMessage, role }) {
     const [alertMessage, setAlertMessage] = useState('null');
@@ -58,11 +59,12 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                             <Link to="/Losowanie">Losowanie</Link>
                             <Link to="/Siatka-Izometryczna">Siatka Izometrycznaa</Link>
                             <Link to="/Test">Test2</Link>
-                            <Link to="/Test3">REST-Apollo</Link>
                             <Link to="/webgl">Drzewo Komponentów</Link>
                             <Link to="/Uzytkownicy">Uzytkownicy BEZ ADMIN</Link>
                             <Link to="/Open">Gra Open</Link>
                             <Link to="/TreeGame2">Gra Open 2</Link>
+                            <Link to="/Game2D">Gra Open 3</Link>
+                            <Link to="/Game">Game</Link>
                             {role === 'admin' && <Link to="/Uzytkownicy">Uzytkownicy</Link>}
                         </div>
                     </div>
@@ -75,9 +77,10 @@ function MainWindow({ handleLogout, serverMessage, role }) {
                                 <Route path="/Losowanie" element={<Losowanie /> } />
                                 <Route path="/Siatka-Izometryczna" element={<CanvasComponent /> } />
                                 <Route path="/Test" element={<Test2 /> } />
-                                <Route path="/Test3" element={<Test3 /> } />
                                 <Route path="/webgl" element={<Webgl /> } />
                                 <Route path="/Open" element={<Open /> } />
+                                <Route path="/Game2D" element={<Game2D /> } />
+                                <Route path="/Game" element={<Game /> } />
                                 <Route path="/TreeGame2" element={<TreeGame2 /> } />
                             </Routes>
                             <PrivateRoute path="/Uzytkownicy" element={<Uzytkownicy />} setAlertMessage={setAlertMessage} />
